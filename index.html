@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeel Prajapati | Full-Stack Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .glass {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 234, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 234, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #00eaff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 234, 255, 0.1);
+            border: 1px solid rgba(0, 234, 255, 0.3);
+            color: #00eaff;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #00eaff;
+            color: #0a0a0f;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: #00ff88;
+            color: #0a0a0f;
+        }
+
+        .terminal-window {
+            background: #1a1a2e;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 234, 255, 0.3);
+        }
+
+        .terminal-header {
+            background: #0f0f1a;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            background: rgba(10, 10, 20, 0.9);
+            min-height: 300px;
+        }
+
+        .code-line {
+            display: flex;
+            margin-bottom: 0.25rem;
+        }
+
+        .line-number {
+            color: #4a5568;
+            width: 2rem;
+            text-align: right;
+            margin-right: 1rem;
+        }
+
+        .keyword { color: #c792ea; }
+        .string { color: #c3e88d; }
+        .comment { color: #546e7a; }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #00ff88;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #00eaff, #00ff88);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -1rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            background: linear-gradient(135deg, #00eaff, #00ff88);
+            border-radius: 50%;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 234, 255, 0.1);
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            border-color: #00eaff;
+            transform: scale(1.05);
+        }
+
+        .project-card, .cert-card, .intern-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover, .cert-card:hover, .intern-card:hover {
+            border-color: rgba(0, 234, 255, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .live-demo {
+            background: rgba(0, 234, 255, 0.15);
+            border: 1px solid rgba(0, 234, 255, 0.4);
+            color: #00eaff;
+        }
+        
+        .live-demo:hover {
+            background: #00eaff;
+            color: #0a0a0f;
+            transform: translateY(-2px);
+        }
+        
+        .github-link {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e2e8f0;
+        }
+        
+        .github-link:hover {
+            background: #ffffff;
+            color: #0a0a0f;
+            transform: translateY(-2px);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(0, 234, 255, 0.2);
+            border-radius: 0.5rem;
+            color: #e2e8f0;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00eaff;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #00eaff; border-radius: 4px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .hero-grid { grid-template-columns: 1fr; }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .stat-card {
+            background: rgba(0, 234, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid rgba(0, 234, 255, 0.2);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00eaff;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #ffffff;
+        }
+        
+        .project-tech {
+            color: #00ff88;
+            font-size: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-family: monospace;
+        }
+        
+        .project-desc {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0.75rem 0;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .bg-dark {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-3 {
+            margin-bottom: 3rem;
+        }
+        
+        .mono {
+            font-family: monospace;
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<!-- Navigation -->
+<nav class="glass">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <a href="#" style="text-decoration: none;">
+            <span style="font-weight: bold; font-family: monospace; font-size: 1.5rem;">
+                <span style="color: #00eaff;">&lt;</span>
+                <span style="color: white;">Zeel</span>
+                <span style="color: #00ff88;">/&gt;</span>
+            </span>
+        </a>
+        <div class="nav-links" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="#home" class="nav-link" style="color: #94a3b8; text-decoration: none;">Home</a>
+            <a href="#skills" class="nav-link" style="color: #94a3b8; text-decoration: none;">Skills</a>
+            <a href="#projects" class="nav-link" style="color: #94a3b8; text-decoration: none;">Projects</a>
+            <a href="#internships" class="nav-link" style="color: #94a3b8; text-decoration: none;">Internships</a>
+            <a href="#certificates" class="nav-link" style="color: #94a3b8; text-decoration: none;">Certificates</a>
+            <a href="#contact" class="nav-link" style="color: #94a3b8; text-decoration: none;">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" style="display: none; background: none; border: none; color: #00eaff; font-size: 1.5rem; cursor: pointer;">☰</button>
+    </div>
+</nav>
+
+<main style="position: relative; z-index: 1; padding-top: 5rem;">
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <p style="color: #00ff88; font-family: monospace;">&gt; Hello World! I'm</p>
+                    <h1 style="font-size: 3.5rem; font-weight: bold; margin: 1rem 0;">
+                        <span class="gradient-text">Zeel Prajapati</span>
+                    </h1>
+                    <p style="font-size: 1.3rem; color: #94a3b8;">Full-Stack MERN & Flask Developer</p>
+                    <p style="color: #94a3b8; margin: 1.5rem 0;">IT student with expertise in MERN stack, Python Flask, AI integration, and modern web technologies.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-number">30+</div><div class="stat-label">Technologies</div></div>
+                        <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Projects</div></div>
+                        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Internships</div></div>
+                        <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">Certificates</div></div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <a href="#contact" class="btn-primary">📧 Hire Me</a>
+                        <a href="#projects" class="btn-secondary">🔗 View Work</a>
+                    </div>
+                </div>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                        <span style="font-size: 0.75rem; color: #64748b;">developer.js</span>
+                    </div>
+                    <div class="terminal-body" id="terminal"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-dark">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;tech-stack&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">All Technologies I Work With</span></h2>
+                <p style="color: #94a3b8;">30+ Technologies & Tools | Full Stack Expertise</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3 style="color: #00eaff; margin-bottom: 1rem;">🎨 Frontend (10+)</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript ES6+</span>
+                        <span class="skill-tag">React.js</span><span class="skill-tag">Next.js</span><span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Bootstrap 5</span><span class="skill-tag">Material UI</span><span class="skill-tag">SASS/SCSS</span>
+                        <span class="skill-tag">Redux Toolkit</span><span class="skill-tag">Figma</span><span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3 style="color: #00eaff; margin-bottom: 1rem;">⚙️ Backend (8+)</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="skill-tag">Python</span><span class="skill-tag">Flask</span><span class="skill-tag">Django</span>
+                        <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span><span class="skill-tag">PHP</span>
+                        <span class="skill-tag">RESTful APIs</span><span class="skill-tag">GraphQL</span><span class="skill-tag">JWT Auth</span>
+                        <span class="skill-tag">WebSockets</span><span class="skill-tag">Microservices</span>
+                    </div>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3 style="color: #00eaff; margin-bottom: 1rem;">🗄️ Database (5+)</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Firebase</span><span class="skill-tag">SQLite</span><span class="skill-tag">Prisma ORM</span>
+                        <span class="skill-tag">Mongoose ODM</span><span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3 style="color: #00eaff; margin-bottom: 1rem;">🤖 AI & Tools (7+)</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="skill-tag">OpenAI API</span><span class="skill-tag">LangChain</span><span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Git/GitHub</span><span class="skill-tag">Docker</span><span class="skill-tag">Postman</span>
+                        <span class="skill-tag">VS Code</span><span class="skill-tag">AWS Basics</span><span class="skill-tag">Vercel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - ALL LIVE DEMOS -->
+    <section id="projects">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;projects&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">Featured Projects</span></h2>
+                <p style="color: #94a3b8;">6 Complete Full-Stack Applications | All Projects Have Live Demos</p>
+            </div>
+            <div class="projects-grid">
+                
+                <!-- Project 1: Vastraa - LIVE -->
+                <div class="project-card">
+                    <div class="project-icon">👘</div>
+                    <h3 class="project-title">Vastraa - Ethnic Wear E-commerce</h3>
+                    <p class="project-tech">HTML | CSS | JS | Python Flask | SQLite</p>
+                    <p class="project-desc">Complete e-commerce website for ethnic wear with Men, Women, Kids collections, cart system, user authentication, and admin panel.</p>
+                    <div class="project-links">
+                        <a href="https://zeelprajapati-dev.github.io/vastraa/" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/vastraa" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2: PromptStudio - LIVE -->
+                <div class="project-card">
+                    <div class="project-icon">🎨</div>
+                    <h3 class="project-title">PromptStudio - AI Prompt Generator</h3>
+                    <p class="project-tech">React | Node.js | OpenAI API | Tailwind</p>
+                    <p class="project-desc">AI-driven prompt generator for image creation, code generation, and content creation. User authentication and prompt history.</p>
+                    <div class="project-links">
+                        <a href="https://promptstudio.vercel.app" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/promptstudio" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Task Management App - LIVE -->
+                <div class="project-card">
+                    <div class="project-icon">📋</div>
+                    <h3 class="project-title">Task Management App</h3>
+                    <p class="project-tech">React | Local Storage | CSS | Date-fns</p>
+                    <p class="project-desc">Advanced todo list with task prioritization, deadlines, reminders, drag & drop interface, data persistence, and categories.</p>
+                    <div class="project-links">
+                        <a href="https://taskmanager-jet.vercel.app" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/taskmanager" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Project 4: AI Electric Service -->
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h3 class="project-title">AI Electric Service Management</h3>
+                    <p class="project-tech">Flask | MySQL | OpenAI API</p>
+                    <p class="project-desc">AI-powered problem summarization, role-based modules for customers, technicians, admins. Smart ticket management system.</p>
+                    <div class="project-links">
+                        <a href="https://ai-electric-service.vercel.app" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/ai-electric-service" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Trip Advisor -->
+                <div class="project-card">
+                    <div class="project-icon">✈️</div>
+                    <h3 class="project-title">Trip Advisor - AI Travel Planner</h3>
+                    <p class="project-tech">React | Node.js | MongoDB | JWT</p>
+                    <p class="project-desc">AI-based trip recommendations, smart itinerary, booking system, payment integration, user reviews, and weather forecasts.</p>
+                    <div class="project-links">
+                        <a href="https://trip-advisor-ai.vercel.app" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/trip-advisor" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Project 6: Dream Home Design -->
+                <div class="project-card">
+                    <div class="project-icon">🏠</div>
+                    <h3 class="project-title">Dream Home Design</h3>
+                    <p class="project-tech">PHP | SQL | JavaScript | Three.js</p>
+                    <p class="project-desc">Dynamic home layout builder, secure authentication, customizable room designs, 3D visualization, and floor plan generator.</p>
+                    <div class="project-links">
+                        <a href="https://dream-home-design.vercel.app" target="_blank" class="live-demo">🌐 Live Demo</a>
+                        <a href="https://github.com/zeelprajapati-dev/dream-home" target="_blank" class="github-link">📁 GitHub</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section id="internships" class="bg-dark">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;internships&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">Professional Internships</span></h2>
+                <p style="color: #94a3b8;">3 Real-World Experiences | Industry Exposure</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                <div class="intern-card">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="font-size: 2rem;">🚀</span>
+                        <div><h3>NovaSphere Technologies</h3><p style="color: #00ff88;">Full-Stack Developer Intern</p></div>
+                    </div>
+                    <p style="color: #94a3b8;">Jan 2026 - Present | Remote</p>
+                    <p style="color: #94a3b8; margin-top: 0.5rem;">React, Flask, MySQL, REST APIs, real-time deployments, agile development.</p>
+                </div>
+                <div class="intern-card">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="font-size: 2rem;">🐘</span>
+                        <div><h3>Brainy Beam Technologies</h3><p style="color: #00ff88;">PHP & Web Dev Intern</p></div>
+                    </div>
+                    <p style="color: #94a3b8;">July 2022 - Aug 2022 | Ahmedabad</p>
+                    <p style="color: #94a3b8; margin-top: 0.5rem;">PHP, MySQL, OOP concepts, CRUD operations, dynamic web applications.</p>
+                </div>
+                <div class="intern-card">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <span style="font-size: 2rem;">📚</span>
+                        <div><h3>Special Char Pvt. Ltd.</h3><p style="color: #00ff88;">Full Stack Trainee</p></div>
+                    </div>
+                    <p style="color: #94a3b8;">2023 (15-Day Program) | Ahmedabad</p>
+                    <p style="color: #94a3b8; margin-top: 0.5rem;">HTML, CSS, JavaScript, Java Backend, Database Integration, Project Deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;certificates&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">Certifications</span></h2>
+                <p style="color: #94a3b8;">6 Professional Certifications & Achievements</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">🔒</span><div><h3>Ethical Hacker Course</h3><p style="color:#00ff88;">Ganpat University | Grade A+</p></div></div><p style="color:#94a3b8; margin-top:0.5rem;">System security, network protection, penetration testing - May 2025</p></div>
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">👩‍💻</span><div><h3>IEEE Women In Engineering</h3><p style="color:#00ff88;">Student Member</p></div></div><p style="color:#94a3b8; margin-top:0.5rem;">Technical workshops, diversity initiatives - May 2024</p></div>
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">🛡️</span><div><h3>Cyber Security & Hacking</h3><p style="color:#00ff88;">Training Certificate</p></div></div><p style="color:#94a3b8; margin-top:0.5rem;">Vulnerability assessment, cyberattack methodologies - April 2023</p></div>
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">🐘</span><div><h3>PHP Training</h3><p style="color:#00ff88;">Brainy Beam Technologies</p></div></div><p style="color:#94a3b8; margin-top:0.5rem;">Server-side scripting, MySQL integration, OOP PHP - July 2022</p></div>
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">📚</span><div><h3>Full Stack Development</h3><p style="color:#00ff88;">Special Char Pvt. Ltd.</p></div></div><p style="color:#94a3b8; margin-top:0.5rem;">Frontend, Backend Java, Database Integration - 2023</p></div>
+                <div class="cert-card"><div style="display:flex; gap:0.75rem; align-items:center"><span style="font-size:1.8rem;">🎯</span><div><h3>Professional Interests</h3><p style="color:#00ff88;">Specialization Areas</p></div></div><div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem"><span class="skill-tag">Web & Interface Design</span><span class="skill-tag">Full-stack Development</span><span class="skill-tag">AI Integration</span><span class="skill-tag">UI/UX</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="bg-dark">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;education&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">Education</span></h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-dot"></div><div class="glass-card" style="padding:1.5rem;"><h3>B.E. Information Technology</h3><p style="color:#00ff88;">U.V. Patel College of Engineering - Ganpat University</p><p>2023-2026 | CGPA: 7.88/10</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot"></div><div class="glass-card" style="padding:1.5rem;"><h3>Diploma in Information Technology</h3><p style="color:#00ff88;">BSPP, Ganpat University</p><p>2020-2023 | CGPA: 8.19/10</p></div></div>
+                <div class="timeline-item"><div class="timeline-dot"></div><div class="glass-card" style="padding:1.5rem;"><h3>SSC</h3><p style="color:#00ff88;">Shrimati S.G. Shukla Kanya Vidhyalaya</p><p>2019-2020 | 78.33%</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="text-center mb-3">
+                <p class="mono">&lt;contact&gt;</p>
+                <h2 style="font-size: 2.5rem;"><span class="gradient-text">Get In Touch</span></h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3>📞 Contact Info</h3>
+                    <div style="margin: 1rem 0;"><span>📱</span> <a href="tel:+919428226172" style="color:#94a3b8;">+91 9428226172</a></div>
+                    <div style="margin: 1rem 0;"><span>📧</span> <a href="mailto:zeelprajapati620@gmail.com" style="color:#94a3b8;">zeelprajapati620@gmail.com</a></div>
+                    <div><span>📍</span> <span style="color:#94a3b8;">Gujarat, India</span></div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0,255,136,0.1); border-radius: 0.5rem;">
+                        <p style="color:#00ff88;">✨ Open for opportunities</p>
+                        <p style="color:#94a3b8; font-size:0.8rem;">Response within 24hrs</p>
+                    </div>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem;">
+                    <h3>📝 Send Message</h3>
+                    <form id="contact-form">
+                        <input type="text" placeholder="Name" class="form-input" style="margin-bottom: 1rem;" required>
+                        <input type="email" placeholder="Email" class="form-input" style="margin-bottom: 1rem;" required>
+                        <input type="text" placeholder="Subject" class="form-input" style="margin-bottom: 1rem;" required>
+                        <textarea rows="4" placeholder="Message" class="form-input" style="margin-bottom: 1rem;" required></textarea>
+                        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">✉️ Send Message</button>
+                    </form>
+                    <div id="form-message" style="margin-top: 1rem; text-align:center;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid rgba(0,234,255,0.2);">
+        <p style="color:#64748b;">© 2025 Zeel Prajapati | 30+ Technologies | 6 Live Projects | 3 Internships | 6+ Certificates</p>
+    </footer>
+</main>
+
+<script>
+    // Matrix Canvas
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%";
+    let columns, drops;
+    function initDrops() { columns = Math.floor(canvas.width / 14); drops = Array(columns).fill(1); }
+    initDrops();
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(10,10,15,0.05)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#00ff88';
+        ctx.font = '14px monospace';
+        for(let i=0;i<drops.length;i++) {
+            ctx.fillStyle = `rgba(0,255,136,${Math.random()*0.5+0.2})`;
+            ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*14, drops[i]*14);
+            if(drops[i]*14 > canvas.height && Math.random()>0.975) drops[i]=0;
+            drops[i]++;
+        }
+    }
+    setInterval(drawMatrix,50);
+    window.addEventListener('resize',()=>{resizeCanvas(); initDrops();});
+
+    // Terminal Animation
+    const terminalLines = [
+        "const developer = {",
+        "  name: 'Zeel Prajapati',",
+        "  role: 'Full-Stack Developer',",
+        "  technologies: 30,", "  projects: 6,", "  internships: 3,", "  certificates: 6,",
+        "  stack: ['MERN','Flask','MySQL','MongoDB','OpenAI'],",
+        "  allProjectsLive: true,",
+        "  available: true","};","developer.connect();"
+    ];
+    let lineIdx=0, charIdx=0, currLine="";
+    const termDiv = document.getElementById('terminal');
+    function updateTerm() {
+        let html="";
+        const lines = currLine.split('\n');
+        lines.forEach((l,i)=>{
+            let p = l.replace(/(const|let|var|true|false)/g,'<span class="keyword">$1</span>').replace(/(".*?")/g,'<span class="string">$1</span>');
+            html+=`<div class="code-line"><span class="line-number">${String(i+1).padStart(2,'0')}</span><span>${p}</span></div>`;
+        });
+        if(lineIdx<terminalLines.length) html+=`<div class="code-line"><span class="line-number">${String(lines.length+1).padStart(2,'0')}</span><span>${currLine.split('\n').pop()}<span class="cursor"></span></span></div>`;
+        termDiv.innerHTML = html;
+        termDiv.scrollTop = termDiv.scrollHeight;
+    }
+    function typeNext() {
+        if(lineIdx<terminalLines.length){
+            if(charIdx<terminalLines[lineIdx].length){
+                currLine+=terminalLines[lineIdx][charIdx];
+                charIdx++;
+                updateTerm();
+                setTimeout(typeNext,25);
+            } else {
+                currLine+="\n";
+                updateTerm();
+                lineIdx++;
+                charIdx=0;
+                setTimeout(typeNext,40);
+            }
+        }
+    }
+    setTimeout(typeNext,400);
+
+    // Smooth Scroll
+    document.querySelectorAll('.nav-link').forEach(l=>l.addEventListener('click',e=>{e.preventDefault();document.querySelector(l.getAttribute('href')).scrollIntoView({behavior:'smooth'});}));
+
+    // Form
+    const frm = document.getElementById('contact-form');
+    const msgDiv = document.getElementById('form-message');
+    if(frm) frm.addEventListener('submit',(e)=>{e.preventDefault(); msgDiv.innerHTML='<p style="color:#00ff88;">✅ Message sent! I will reply soon.</p>'; frm.reset(); setTimeout(()=>msgDiv.innerHTML='',4000);});
+
+    // Mobile Menu
+    const mobBtn = document.querySelector('.mobile-menu-btn');
+    const navCont = document.querySelector('.nav-links');
+    if(mobBtn) mobBtn.addEventListener('click',()=>{if(navCont.style.display==='flex') navCont.style.display='none'; else { navCont.style.display='flex'; navCont.style.flexDirection='column'; navCont.style.width='100%'; navCont.style.marginTop='1rem';}});
+
+    // Nav Scroll
+    window.addEventListener('scroll',()=>{const navBar=document.querySelector('nav'); if(window.scrollY>50) navBar.style.background='rgba(10,10,15,0.95)'; else navBar.style.background='rgba(10,10,15,0.8)';});
+</script>
+</body>
+</html>
