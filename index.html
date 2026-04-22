@@ -581,6 +581,172 @@
     transform: translateX(0) translateY(0);
 }
 
+
+
+.workspace {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #e2edf7;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.05);
+}
+
+/* LEFT */
+.workspace-sidebar {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding: 1rem;
+}
+
+.workspace-sidebar h4 {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.file {
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.file:hover {
+  background: #1e293b;
+}
+
+.file.active {
+  background: #1e293b;
+  color: white;
+}
+
+/* RIGHT */
+.workspace-content {
+  background: #0b1220;
+  color: white;
+  padding: 2rem;
+}
+#projects h2 {
+    background: rgba(255,255,255,0.08);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    backdrop-filter: blur(10px);
+}
+.workspace {
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.workspace-sidebar {
+    background: #0a0f1c;
+}
+.file.active {
+    background: #2563eb;
+}
+#contact .card-soft {
+    background: linear-gradient(135deg, #ffffff, #f6f9fc);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    border: 1px solid #e8eef5;
+    transition: all 0.3s ease;
+}
+
+#contact .card-soft p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: #1e3a5f;
+}
+#contact .card-soft:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px rgba(30,58,95,0.15);
+}
+
+#contact .card-soft i {
+    color: #1e3a5f;
+    font-size: 1.1rem;
+    width: 25px;
+}
+#contact .card-soft h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #0f2c48;
+    position: relative;
+}
+
+#contact .card-soft h3::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #1e3a5f;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    border-radius: 10px;
+}
+.workspace-content h2 {
+  margin-bottom: 0.5rem;
+}
+
+.workspace-content p {
+  color: #94a3b8;
+}
+
+.workspace-buttons a {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #2563eb;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  color: white;
+}
+
+.workspace-buttons a:hover {
+  background: #1d4ed8;
+}
+
+.hire-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg,#1e3a5f,#3b7ca0);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.7); }
+    100% { box-shadow: 0 0 0 10px rgba(74,222,128,0); }
+}
+
+.hire-cta {
+    background: white;
+    color: #1e3a5f;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
     .career-grid {
@@ -707,8 +873,88 @@ learning/advanced-react.md
         </div>
     </div>
 </section>
-    <section id="projects"><div class="container"><div style="text-align:center; margin-bottom:2.5rem;" data-aos="fade-up"><span class="hire-badge"><i class="fas fa-rocket"></i> Ready for Hire</span><h2 style="font-size:2.2rem; font-weight:700;">Featured Projects</h2></div><div class="projects-grid"><div class="project-card" data-aos="flip-left"><h3 class="project-title">Dream Home Designer</h3><p class="project-date">Jan 2025 – June 2025</p><p class="project-desc">Dynamic home layout web app using HTML, CSS, JS, PHP, SQL. Secure authentication.</p><a href="https://my-dream-home-sage.vercel.app" target="_blank" class="live-demo"><i class="fas fa-globe"></i> Live Demo →</a></div><div class="project-card" data-aos="flip-up"><h3 class="project-title">Trip Advisor – AI Smart Travel Planner</h3><p class="project-date">July 2025 – Dec 2025</p><p class="project-desc">MERN Full-Stack with AI recommendations, itinerary management.</p><a href="https://yaatra-website.vercel.app" target="_blank" class="live-demo"><i class="fas fa-globe"></i> Live Demo →</a></div><div class="project-card" data-aos="flip-right"><h3 class="project-title">AI Electric Service Mgmt (TechnoFix)</h3><p class="project-date">Jan 2026 – Present</p><p class="project-desc">Python Flask, MySQL, OpenAI NLP for AI-powered service management.</p><a href="https://ai-electric-service.vercel.app" target="_blank" class="live-demo"><i class="fas fa-bolt"></i> Live Demo →</a></div><div class="project-card" data-aos="zoom-in"><h3 class="project-title">PromptStudio AI</h3><p class="project-date">2025</p><p class="project-desc">AI prompt generator with history storage using React, Node.js, OpenAI.</p><a href="https://promptstudio-ai.vercel.app" target="_blank" class="live-demo"><i class="fas fa-magic"></i> Live Demo →</a></div><div class="project-card" data-aos="fade-right"><h3 class="project-title">Foodie Restaurant UI</h3><p class="project-date">2024</p><p class="project-desc">Pixel‑perfect restaurant interface with micro‑interactions.</p><a href="https://zeelprajapati20.wixsite.com/foodie" target="_blank" class="live-demo"><i class="fas fa-utensils"></i> Live Demo →</a></div><div class="project-card" data-aos="fade-left"><h3 class="project-title">Vastraa E‑commerce</h3><p class="project-date">2024</p><p class="project-desc">Fashion storefront with dynamic cart, product gallery.</p><a href="https://vastraa-eosin.vercel.app" target="_blank" class="live-demo"><i class="fas fa-shopping-cart"></i> Live Demo →</a></div></div></div></section>
+   <section id="projects" class="bg-muted">
+  <div class="container">
 
+    <div style="text-align:center; margin-bottom:2rem;">
+      <div class="hire-banner">
+  <div class="hire-left">
+    <span class="pulse-dot"></span>
+    <span>Available for Work</span>
+  </div>
+  <a href="#contact" class="hire-cta">Hire Me →</a>
+</div>
+      <h2 style="font-size:2.2rem; font-weight:700;">Featured Projects</h2>
+      <p>Browse my projects like a developer workspace.</p>
+    </div>
+
+    <div class="workspace">
+
+      <!-- LEFT SIDEBAR -->
+      <div class="workspace-sidebar">
+        <h4>projects</h4>
+
+        <div class="file active" onclick="openProject('dream')">
+          <i class="fas fa-home"></i> DreamHome.jsx
+        </div>
+
+        <div class="file" onclick="openProject('trip')">
+          <i class="fas fa-plane"></i> TripPlanner.jsx
+        </div>
+
+        <div class="file" onclick="openProject('ai')">
+          <i class="fas fa-bolt"></i> TechnoFixAI.jsx
+        </div>
+
+        <div class="file" onclick="openProject('prompt')">
+          <i class="fas fa-magic"></i> PromptStudio.jsx
+        </div>
+
+        <div class="file" onclick="openProject('foodie')">
+          <i class="fas fa-utensils"></i> FoodieUI.jsx
+        </div>
+
+        <div class="file" onclick="openProject('vastraa')">
+          <i class="fas fa-shopping-cart"></i> Vastraa.jsx
+        </div>
+
+        <div class="file" onclick="openProject('spotify')">
+          <i class="fas fa-music"></i> SpotifyClone.jsx
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="workspace-content">
+
+        <h2 id="projectTitle">Dream Home Designer</h2>
+
+        <div id="projectDesc" style="margin-bottom: 1rem; line-height: 1.6;">
+          <strong>📌 Overview</strong><br>
+          A modern real estate web interface designed for browsing and exploring properties with an elegant and user-friendly experience. It focuses on clean UI, smooth navigation, and intuitive property discovery.
+          <br><br>
+          <strong>✨ Key Features</strong><br>
+          • Property listing UI<br>
+          • Advanced search & filtering<br>
+          • Clean card-based layout<br>
+          • Responsive design<br>
+          • Smooth navigation experience
+          <br><br>
+          <strong>🛠️ Technology Stack</strong><br>
+          React • JavaScript • CSS • UI Components
+        </div>
+
+        <div class="workspace-buttons">
+          <a id="liveBtn" href="https://my-dream-home-sage.vercel.app" target="_blank">
+            🔗 Live Demo
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
     <section id="design" class="bg-muted"><div class="container"><div style="text-align:center; margin-bottom:2rem;" data-aos="fade-up"><p class="mono-badge"><i class="fas fa-paintbrush"></i> creative portfolio</p><h2 style="font-size:2.2rem;">Design Gallery</h2></div><div class="design-gallery"><div class="design-card" data-aos="zoom-in-up"><div class="design-icon"><i class="fab fa-figma"></i></div><h3 class="design-title">Food App UI Design</h3><div class="design-tool">Figma</div><p class="design-desc">Modern food delivery app interface with vibrant cards.</p><a href="https://www.figma.com/design/m5AooxSIopvISkE0QnEyMa/Untitled?node-id=2-2" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card" data-aos="zoom-in-up"><div class="design-icon"><i class="fab fa-figma"></i></div><h3 class="design-title">Complete UI/UX Design</h3><div class="design-tool">Figma Community</div><p class="design-desc">Comprehensive design system, style guides, responsive layouts.</p><a href="https://www.figma.com/design/hY2nLUCO9ulrlJZX4ed9Q4/Complete-UI-UX-design--Community-?node-id=15-185" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card" data-aos="zoom-in-up"><div class="design-icon"><i class="fab fa-figma"></i></div><h3 class="design-title">Mobile App UI Kit</h3><div class="design-tool">Figma</div><p class="design-desc">Elegant mobile app design with modern typography.</p><a href="https://www.figma.com/design/xfhcCkRwHKiAgUnYhGgXMw/Untitled?node-id=0-1" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card" data-aos="zoom-in-up"><div class="design-icon"><i class="fab fa-canva"></i></div><h3 class="design-title">Canva Design Studio</h3><div class="design-tool">Canva</div><p class="design-desc">Professional ads, invitations, social media posts, branding.</p><a href="https://www.canva.com/design/DAHHX072rt0/eUKMD2wls6kvmYhZmvlwog/edit" target="_blank" class="design-btn">Click Here →</a></div></div></div></section>
 
    <section id="experience"><div class="container"><div style="text-align:center;" data-aos="fade-up"><p class="mono-badge">industry immersion</p><h2 style="font-size:2.2rem;">Professional Experience</h2></div><div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;"><div class="intern-card" data-aos="fade-right"><h3>NovaSphere Technologies L.L.P.</h3><p style="font-weight:500;">Full-Stack Developer Intern · Completed (4 Months)</p><p>Scalable web apps using HTML, CSS, JS, Bootstrap, Python Flask, MySQL, REST APIs, React components.</p></div><div class="intern-card" data-aos="fade-up"><h3>Brainy Beam Technologies</h3><p style="font-weight:500;">PHP Web Dev · July 2022</p><p>PHP, MySQL, OOP, dynamic CRUD systems.</p></div><div class="intern-card" data-aos="fade-left"><h3>Special Char Pvt. Ltd.</h3><p style="font-weight:500;">Full Stack Trainee · 2023</p><p>Frontend (HTML/CSS) + Java backend, database integration.</p></div></div></div></section>
@@ -731,19 +977,21 @@ learning/advanced-react.md
     const errorSpan = document.getElementById('accessError');
     const RESUME_LINK = "https://drive.google.com/file/d/1JzPuyKc7O_jpqm99fZWI5XCW811t81LT/view?usp=sharing";
     function closeModal() { modal.classList.remove('active'); }
-    openBtn?.addEventListener('click', () => { modal.classList.add('active'); errorSpan.innerText = ''; passInput.value = ''; });
+    if(openBtn) openBtn?.addEventListener('click', () => { modal.classList.add('active'); errorSpan.innerText = ''; passInput.value = ''; });
     modal?.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
     verifyBtn?.addEventListener('click', () => { const val = passInput.value.trim(); if(val === "zeel2026" || val === "ZP@resume" || val === "ZeelSecure2026") { window.open(RESUME_LINK, '_blank'); closeModal(); } else errorSpan.innerText = "Invalid passkey."; });
     document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); }); });
     const mobBtn = document.getElementById('mobileMenuBtn'); const navDiv = document.querySelector('.nav-links');
     if(mobBtn) mobBtn.addEventListener('click', () => { if(navDiv.style.display === 'flex') navDiv.style.display = 'none'; else { navDiv.style.display = 'flex'; navDiv.style.flexDirection = 'column'; navDiv.style.background = 'white'; navDiv.style.padding = '1rem'; navDiv.style.borderRadius = '1rem'; } });
     const form = document.getElementById('contact-form'); const msgDiv = document.getElementById('form-message');
-    if(form) form.addEventListener('submit', async (e) => {
+    if(form) 
+    form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = {
         name: form.name.value,
         email: form.email.value,
+        subject: form.subject.value,
         message: form.message.value
     };
 
@@ -788,6 +1036,60 @@ function revealOnScroll() {
 }
 
 window.addEventListener("scroll", revealOnScroll);
+
+function openProject(type) {
+  const title = document.getElementById("projectTitle");
+  const descDiv = document.getElementById("projectDesc");
+  const btn = document.getElementById("liveBtn");
+
+  document.querySelectorAll(".file").forEach(f => f.classList.remove("active"));
+  event.currentTarget.classList.add("active");
+
+  const projectsDetail = {
+    dream: {
+      title: "Dream Home Designer",
+      desc: `<strong>📌 Overview</strong><br>A modern real estate web interface designed for browsing and exploring properties with an elegant and user-friendly experience. It focuses on clean UI, smooth navigation, and intuitive property discovery.<br><br><strong>✨ Key Features</strong><br>• Property listing UI<br>• Advanced search & filtering<br>• Clean card-based layout<br>• Responsive design<br>• Smooth navigation experience<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS • UI Components`,
+      link: "https://my-dream-home-sage.vercel.app"
+    },
+    trip: {
+      title: "TripPlanner.jsx",
+      desc: `<strong>📌 Overview</strong><br>An interactive travel planning interface that helps users explore destinations and organize trips efficiently with a simple and visually appealing UI.<br><br><strong>✨ Key Features</strong><br>• Trip planning interface<br>• Destination exploration UI<br>• Itinerary layout system<br>• Responsive design<br>• User-friendly navigation<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS`,
+      link: "https://yaatra-website.vercel.app"
+    },
+    ai: {
+      title: "TechnoFixAI.jsx",
+      desc: `<strong>📌 Overview</strong><br>An AI-inspired technical support interface that simulates smart troubleshooting assistance with a clean and conversational UI experience.<br><br><strong>✨ Key Features</strong><br>• AI support UI system<br>• Interactive response layout<br>• Problem-solving interface<br>• Clean chat-style design<br>• Fast user interaction flow<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS • AI UI Logic`,
+      link: "https://ai-electric-service.vercel.app"
+    },
+    prompt: {
+      title: "PromptStudio.jsx",
+      desc: `<strong>📌 Overview</strong><br>A creative prompt management tool designed for generating, editing, and organizing AI prompts with a smooth and productivity-focused interface.<br><br><strong>✨ Key Features</strong><br>• Prompt creation system<br>• Prompt editing & management<br>• Organized workspace UI<br>• Copy & reuse functionality<br>• Clean productivity design<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS`,
+      link: "https://promptstudio-ai.vercel.app"
+    },
+    foodie: {
+      title: "FoodieUI.jsx",
+      desc: `<strong>📌 Overview</strong><br>A modern food ordering UI that displays restaurants, menus, and dishes in a visually rich and engaging interface.<br><br><strong>✨ Key Features</strong><br>• Food menu browsing<br>• Restaurant UI cards<br>• Category-based filtering<br>• Responsive layout<br>• Smooth UI transitions<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS`,
+      link: "https://zeelprajapati20.wixsite.com/foodie"
+    },
+    vastraa: {
+      title: "Vastraa.jsx",
+      desc: `<strong>📌 Overview</strong><br>A modern e-commerce fashion store UI with cart management and dynamic product display for seamless shopping experience.<br><br><strong>✨ Key Features</strong><br>• Product catalog UI<br>• Shopping cart interface<br>• Dynamic product filtering<br>• Responsive grid layout<br>• Smooth checkout flow<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS`,
+      link: "https://vastraa-eosin.vercel.app"
+    },
+    spotify: {
+      title: "SpotifyClone.jsx",
+      desc: `<strong>📌 Overview</strong><br>A Spotify-inspired music streaming UI clone built using React, focusing on modern design, smooth navigation, and interactive music experience.<br><br><strong>✨ Key Features</strong><br>• Playlist management<br>• Music discovery UI<br>• User authentication (UI level)<br>• Audio playback controls<br>• Responsive design<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS • UI Design`,
+      link: "#"
+    }
+  };
+
+  const project = projectsDetail[type];
+  if(project) {
+    title.innerText = project.title;
+    descDiv.innerHTML = project.desc;
+    btn.href = project.link;
+  }
+}
 </script>
 </body>
 </html>
