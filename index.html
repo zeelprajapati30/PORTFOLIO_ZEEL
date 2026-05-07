@@ -457,7 +457,14 @@
         .bg-muted { background: #fafcff; }
         .mono-badge { font-family: 'Space Grotesk', monospace; color: #2c5a7a; font-weight: 500; }
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .profile-img { width: 100%; max-width: 360px; border-radius: 2rem; object-fit: cover; aspect-ratio: 1/1; box-shadow: 0 25px 38px -16px rgba(0,0,0,0.1); transition: all 0.4s; }
+        .profile-img {
+    width: 260px;   /* FIXED SIZE */
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%; /* circle look 🔥 */
+    box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+    margin-top: -10px;
+}
         .profile-img:hover { transform: scale(1.02); }
         .hero-name { font-size: 4rem; font-weight: 800; line-height: 1.2; }
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color:#1e3a5f; cursor: pointer; }
@@ -465,7 +472,10 @@
         .nav-link { position: relative; color: #2c4c6e; font-weight: 500; text-decoration: none; font-size: 0.95rem; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -6px; left: 0; background: #1e3a5f; transition: width 0.25s ease; }
         .nav-link:hover::after { width: 100%; }
-        
+        .hero-info-box {
+    max-width: 280px;   /* thodu narrow */
+    text-align: center;
+}
         @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
             .career-grid { grid-template-columns: 1fr; }
@@ -487,6 +497,451 @@
         }
         footer { text-align: center; padding: 2rem; border-top: 1px solid #eef2f8; }
         .category-header { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+    
+    
+    
+    /* RESPONSIVE BREAKPOINTS */
+@media (max-width: 992px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .hero-name { font-size: 2.8rem; text-align: center; }
+    .career-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .workspace { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-links { 
+        display: none; 
+        position: absolute; 
+        top: 70px; 
+        left: 1rem; 
+        right: 1rem; 
+        background: white; 
+        flex-direction: column; 
+        padding: 1.2rem; 
+        border-radius: 1rem;
+    }
+    .nav-links.show { display: flex; }
+
+    .mobile-menu-btn { display: block; }
+
+    .hero-name { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-name { font-size: 1.9rem; }
+    .container { padding: 0 1rem; }
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.workspace {
+    width: 100%;
+    overflow: hidden;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.container {
+    overflow-x: hidden;
+}
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+/* GLOBAL FIX */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Fix all sections */
+section {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Prevent any element overflow */
+* {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 1rem; /* reduce padding for mobile */
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+.terminal-box {
+    width: 100%;
+    overflow-x: auto;   /* scroll inside instead of breaking */
+    white-space: pre-wrap; /* wrap text */
+    word-break: break-word;
+}
+.card-soft,
+.skill-category,
+.design-card,
+.cert-card-detailed,
+.intern-card,
+.career-card {
+    width: 100%;
+}
+.career-grid,
+.contact-grid {
+    grid-template-columns: 1fr;
+}
+h1, h2, h3, p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+@media (max-width: 768px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-name {
+        font-size: 2rem;
+    }
+
+    .terminal-box {
+        font-size: 0.7rem;
+    }
+
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+}
+* {
+    max-width: 100%;
+}
+/* GLOBAL FIX */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Fix all sections */
+section {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Prevent any element overflow */
+* {
+    box-sizing: border-box;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section-premium {
+        padding: 1.2rem;
+    }
+}
+@media (max-width: 480px) {
+
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .contact-icon-card {
+        flex-direction: row;
+        gap: 0.8rem;
+        padding: 0.7rem;
+    }
+
+    .contact-icon-card i {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    .contact-icon-card a,
+    .contact-icon-card span {
+        font-size: 0.85rem;
+        word-break: break-word;
+    }
+
+    .contact-form-premium .form-input {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+}
+.terminal-box {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+/* HERO RIGHT SIDE */
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* ADD THIS */
+    gap: 1.2rem;
+}
+
+/* PREMIUM BOX */
+.hero-info-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    border: 1px solid #e2edf7;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    max-width: 320px;
+}
+
+/* HOVER EFFECT 🔥 */
+.hero-info-box:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 30px 40px -12px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+.hero-info-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: #1e3a5f;
+}
+
+/* TEXT */
+.hero-info-box p {
+    font-size: 0.9rem;
+    color: #4b6f8c;
+}
+
+/* TAGS */
+.hero-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+}
+
+.hero-tags span {
+    background: #eef3fc;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+/* TAG HOVER */
+.hero-tags span:hover {
+    background: #1e3a5f;
+    color: white;
+}
+
+.hero-tags span {
+    background: linear-gradient(135deg, #eef3fc, #dbeafe);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #e2edf7;
+}
+
+.hero-tags span:hover {
+    background: linear-gradient(135deg, #1e3a5f, #3b7ca0);
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+}
+.hero-info-box {
+  position: relative;
+  overflow: hidden;
+}
+.hero-info-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1e3a5f, #3b7ca0, #6aaccc);
+}
+@media (max-width: 768px) {
+  #home .container > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+#home {
+    padding: 1.5rem 0 3rem 0 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+}
+
+#home .container > div {
+
+    padding-top: 0 !important;
+    align-items: center;
+}
+@media (min-width: 769px) {
+    #home .container > div {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3rem !important;
+        align-items: center !important;
+    }
+}
+.hero-grid-main{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:4rem;
+    align-items:center;
+    min-height:85vh;
+}
+
+/* LEFT SIDE */
+.hero-left{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* RIGHT SIDE */
+.hero-right{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+/* HERO NAME */
+.hero-name{
+    font-size:4.5rem;
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:1rem;
+}
+
+/* DESCRIPTION */
+.hero-desc{
+    font-size:1.1rem;
+    color:#4b6f8c;
+    max-width:580px;
+    margin-bottom:2rem;
+}
+
+/* PROFILE IMAGE */
+.hero-profile{
+    width:280px;
+    height:280px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 25px 45px rgba(30,58,95,0.15);
+    transition:0.4s ease;
+}
+
+.hero-profile:hover{
+    transform:scale(1.03) translateY(-5px);
+}
+
+/* ABOUT CARD */
+.hero-about-card{
+    background:white;
+    padding:1.4rem;
+    border-radius:1.5rem;
+    border:1px solid #e2edf7;
+    box-shadow:0 15px 30px rgba(0,0,0,0.06);
+    max-width:340px;
+    width:100%;
+}
+
+/* MOBILE */
+@media(max-width:992px){
+
+    .hero-grid-main{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:2rem;
+    }
+
+    .hero-left{
+        align-items:center;
+    }
+
+    .hero-name{
+        font-size:3rem;
+    }
+
+    .hero-desc{
+        margin:auto;
+        margin-bottom:2rem;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero-name{
+        font-size:2.2rem;
+    }
+
+    .hero-profile{
+        width:220px;
+        height:220px;
+    }
+
+    .hero-about-card{
+        max-width:100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -505,16 +960,129 @@
 <nav class="glass-nav">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
         <a href="#" style="text-decoration: none; font-weight: 700; font-size: 1.5rem; letter-spacing: -0.5px;"><span style="color:#1e3a5f;">Zeel</span><span style="color:#6b8eaa;">Prajapati</span></a>
-        <div class="nav-links">
-            <a href="#home" class="nav-link">Home</a><a href="#skills" class="nav-link">Skills</a><a href="#projects" class="nav-link">Projects</a><a href="#design" class="nav-link">Designs</a><a href="#certificates" class="nav-link">Certificates</a><a href="#education" class="nav-link">Education</a><a href="#contact" class="nav-link">Contact</a>
-        </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#design" class="nav-link">Designs</a>
+    <a href="#certificates" class="nav-link">Certificates</a>
+    <a href="#education" class="nav-link">Education</a>
+    <a href="#contact" class="nav-link">Contact</a>
+</div>
+       <button class="mobile-menu-btn" id="mobileMenuBtn">
+  <i class="fas fa-bars"></i>
+</button>
+        
     </div>
 </nav>
 
 <main style="position: relative; z-index: 1; padding-top: 5rem;">
-    <section id="home"><div class="container"><div class="hero-grid"><div data-aos="fade-up"><div class="greeting-hero" style="font-size:1rem; margin-bottom:0.5rem;"><i class="fas fa-code"></i> Hello World! I'm</div><h1 class="hero-name"><span class="gradient-text-premium">Zeel Prajapati</span></h1><p class="hero-tagline" style="font-size:1.05rem; color:#4b6f8c;">Full‑Stack Engineer & AI Developer — Crafting intelligent, scalable web solutions.</p><div class="stats-grid"><div class="stat-card"><div class="stat-number">13</div><div>technologies</div></div><div class="stat-card"><div class="stat-number">6</div><div>full apps</div></div><div class="stat-card"><div class="stat-number">3</div><div>internships</div></div><div class="stat-card"><div class="stat-number">6+</div><div>certifications</div></div></div><div style="display: flex; gap: 1rem; flex-wrap: wrap;"><a href="#projects" class="btn-primary"><i class="fas fa-arrow-down"></i> Featured work</a><a href="#contact" class="btn-secondary"><i class="fas fa-pen-fancy"></i> Hire Me</a></div></div><div data-aos="fade-left"><img src="zeel.jpeg" alt="Zeel Prajapati" class="profile-img" onerror="this.src='https://placehold.co/400x400/f0f4f9/1e3a5f?text=Zeel+Prajapati';"></div></div></div></section>
+<section id="home">
+  <div class="container">
 
+    <div class="hero-grid-main">
+
+      <!-- LEFT SIDE -->
+      <div class="hero-left" data-aos="fade-right">
+
+        <div class="hero-badge">
+          <i class="fas fa-code"></i>
+          Full-Stack Engineer & AI Developer
+        </div>
+
+        <h1 class="hero-name">
+          Hi, I'm <span class="gradient-text-premium">Zeel Prajapati</span>
+        </h1>
+
+        <p class="hero-description">
+          Passionate Full-Stack Developer focused on building modern,
+          responsive, and AI-powered web applications with clean UI/UX.
+        </p>
+
+        <div class="stats-grid" style="margin-top:2rem;">
+          <div class="stat-card">
+            <div class="stat-number">13+</div>
+            <div>Technologies</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div>Projects</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div>Internships</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">6+</div>
+            <div>Certificates</div>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary">
+            <i class="fas fa-arrow-right"></i>
+            View Projects
+          </a>
+
+          <a href="#contact" class="btn-secondary">
+            <i class="fas fa-paper-plane"></i>
+            Hire Me
+          </a>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="hero-right" data-aos="fade-left">
+
+        <div class="hero-image-wrapper">
+
+          <div class="hero-circle"></div>
+
+          <img 
+            src="zeel.jpeg"
+            alt="Zeel Prajapati"
+            class="profile-img"
+            onerror="this.src='https://placehold.co/260x260/e8f0f7/1e3a5f?text=ZP';"
+          >
+
+        </div>
+
+        <div class="hero-info-box">
+
+          <div class="hero-top-line"></div>
+
+          <div class="hero-card-header">
+            <div class="hero-avatar">👩‍💻</div>
+
+            <div>
+              <small>ABOUT ME</small>
+              <h3>Zeel Prajapati</h3>
+            </div>
+          </div>
+
+          <p>
+           B.Tech IT graduate and passionate Full-Stack Developer skilled in frontend and backend development, UI/UX design, and AI-powered applications. Experienced with HTML, CSS, JavaScript, Python, Flask, Node.js, MongoDB, and MySQL, with basic knowledge of React.js and the MERN stack. Focused on building modern, responsive, and user-friendly web experiences.
+
+          </p>
+
+          <div class="hero-tags">
+            <span>Frontend</span>
+            <span>Backend</span>
+            <span>AI Enthusiast</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
     <section id="skills" class="bg-muted"><div class="container"><div style="text-align:center; margin-bottom:2rem;" data-aos="fade-up"><p class="mono-badge"><i class="fas fa-code"></i> my expertise</p><h2 style="font-size:2rem;">Technical & Professional Skills</h2></div><div class="skills-showcase"><div class="skill-category" data-aos="fade-right"><div class="category-header"><div class="category-icon"><i class="fas fa-desktop"></i></div><div class="category-title">Frontend Development</div></div><div class="skill-tags"><span class="skill-tag-modern"><i class="fab fa-react"></i> React</span><span class="skill-tag-modern"><i class="fab fa-html5"></i> HTML5</span><span class="skill-tag-modern"><i class="fab fa-css3-alt"></i> CSS3</span><span class="skill-tag-modern"><i class="fab fa-js"></i> JavaScript</span><span class="skill-tag-modern"><i class="fab fa-tailwind"></i> Tailwind CSS</span></div></div><div class="skill-category" data-aos="fade-left"><div class="category-header"><div class="category-icon"><i class="fas fa-server"></i></div><div class="category-title">Backend Development</div></div><div class="skill-tags"><span class="skill-tag-modern"><i class="fab fa-node-js"></i> Node.js</span><span class="skill-tag-modern"><i class="fas fa-code"></i> Express JS</span><span class="skill-tag-modern"><i class="fab fa-python"></i> Python</span><span class="skill-tag-modern"><i class="fab fa-php"></i> PHP</span><span class="skill-tag-modern"><i class="fas fa-flask"></i> Flask</span></div></div><div class="skill-category" data-aos="fade-right"><div class="category-header"><div class="category-icon"><i class="fas fa-database"></i></div><div class="category-title">Database & Data</div></div><div class="skill-tags"><span class="skill-tag-modern"><i class="fas fa-leaf"></i> MongoDB</span><span class="skill-tag-modern"><i class="fas fa-database"></i> MySQL</span><span class="skill-tag-modern"><i class="fas fa-tree"></i> Mongoose</span></div></div><div class="skill-category" data-aos="fade-left"><div class="category-header"><div class="category-icon"><i class="fas fa-tools"></i></div><div class="category-title">Tools & Platforms</div></div><div class="skill-tags"><span class="skill-tag-modern"><i class="fab fa-git-alt"></i> Git</span><span class="skill-tag-modern"><i class="fab fa-github"></i> GitHub</span><span class="skill-tag-modern"><i class="fas fa-code"></i> VS Code</span><span class="skill-tag-modern"><i class="fas fa-cloud"></i> Vercel</span></div></div><div class="skill-category" data-aos="fade-up"><div class="category-header"><div class="category-icon"><i class="fas fa-robot"></i></div><div class="category-title">AI Tools</div></div><div class="skill-tags"><span class="skill-tag-modern"><i class="fas fa-brain"></i> ChatGPT</span><span class="skill-tag-modern"><i class="fas fa-cogs"></i> DeepSeek</span><span class="skill-tag-modern"><i class="fas fa-magic"></i> OpenAI API</span></div></div></div><div style="margin-top:2rem; text-align:center;"><h3>Professional Interests</h3><div><span class="interest-tag">Web & Interface Design</span><span class="interest-tag">Front-end Development</span><span class="interest-tag">Full-stack Development</span><span class="interest-tag">Web Application Development</span><span class="interest-tag">Creative Visual Design</span></div></div></div></section>
 
     <section id="career" class="career-section"><div class="container"><h2 style="text-align:center; font-size:2.3rem; font-weight:800;">Professional Journey</h2><p style="text-align:center; margin-bottom:1.5rem;">Git-tracked career progression. Currently pushing commits to production.</p><div class="career-grid"><div class="terminal-box"><pre>$ git log --oneline --author="Zeel Prajapati"
@@ -530,7 +1098,67 @@ $ git status
 ✔ career growth: active 🚀
 ✔ projects: production-ready</pre></div><div><div class="career-card"><h3>Full-Stack Developer Intern</h3><p class="company">NovaSphere Technologies L.L.P.</p><p class="date">Jan 2026 – Apr 2026</p><div class="tags" style="display:flex; flex-wrap:wrap; gap:0.5rem;"><span>React</span><span>Flask</span><span>MySQL</span><span>REST API</span></div><ul style="margin-top:1rem;"><li>Built scalable full-stack applications</li><li>Worked on REST APIs & authentication</li><li>React-based UI development</li></ul></div><div class="career-stats"><div><h3>120+</h3><p>Days Coding</p></div><div><h3>6+</h3><p>Projects</p></div><div><h3>10+</h3><p>Technologies</p></div><div><h3>3</h3><p>Internships</p></div></div></div></div></div></section>
 
-    <section id="projects"><div class="container"><div class="hire-banner"><div><span class="pulse-dot"></span> Available for Work</div><a href="#contact" class="hire-cta">Hire Me →</a></div><h2 style="text-align:center;">Featured Projects</h2><div class="workspace"><div class="workspace-sidebar"><h4>projects</h4><div class="file active" onclick="openProject('dream', this)"><i class="fas fa-home"></i> DreamHome.jsx</div><div class="file" onclick="openProject('trip', this)"><i class="fas fa-plane"></i> TripPlanner.jsx</div><div class="file" onclick="openProject('ai', this)"><i class="fas fa-bolt"></i> TechnoFixAI.jsx</div><div class="file" onclick="openProject('prompt', this)"><i class="fas fa-magic"></i> PromptStudio.jsx</div><div class="file" onclick="openProject('foodie', this)"><i class="fas fa-utensils"></i> FoodieUI.jsx</div><div class="file" onclick="openProject('vastraa', this)"><i class="fas fa-shopping-cart"></i> Vastraa.jsx</div><div class="file" onclick="openProject('spotify', this)"><i class="fas fa-music"></i> SpotifyClone.jsx</div></div><div class="workspace-content"><h2 id="projectTitle">Dream Home Designer</h2><div id="projectDesc" style="margin-bottom:1rem;"><strong>📌 Overview</strong><br>A modern real estate web interface designed for browsing and exploring properties.<br><br><strong>✨ Key Features</strong><br>Property listing UI, advanced search & filtering, responsive design.<br><br><strong>🛠️ Technology Stack</strong><br>React • JavaScript • CSS</div><div class="workspace-buttons"><a id="liveBtn" href="https://my-dream-home-sage.vercel.app" target="_blank">🔗 Live Demo</a></div></div></div></div></section>
+   <section id="projects">
+  <div class="container">
+
+    <div class="hire-banner">
+      <div><span class="pulse-dot"></span> Available for Work</div>
+      <a href="#contact" class="hire-cta">Hire Me →</a>
+    </div>
+
+    <h2 style="text-align:center;">Featured Projects</h2>
+
+    <div class="workspace">
+
+      <!-- LEFT SIDE -->
+      <div class="workspace-sidebar">
+        <h4>projects</h4>
+
+        <div class="file active" onclick="openProject('dream', this)">
+          <i class="fas fa-home"></i> DreamHome.jsx
+        </div>
+
+        <div class="file" onclick="openProject('trip', this)">
+          <i class="fas fa-plane"></i> TripPlanner.jsx
+        </div>
+
+        <div class="file" onclick="openProject('ai', this)">
+          <i class="fas fa-bolt"></i> TechnoFixAI.jsx
+        </div>
+
+        <div class="file" onclick="openProject('prompt', this)">
+          <i class="fas fa-magic"></i> PromptStudio.jsx
+        </div>
+
+        <div class="file" onclick="openProject('foodie', this)">
+          <i class="fas fa-utensils"></i> FoodieUI.jsx
+        </div>
+
+        <div class="file" onclick="openProject('vastraa', this)">
+          <i class="fas fa-shopping-cart"></i> Vastraa.jsx
+        </div>
+
+        <div class="file" onclick="openProject('spotify', this)">
+          <i class="fas fa-music"></i> SpotifyClone.jsx
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="workspace-content">
+
+        <h2 id="projectTitle"></h2>
+
+        <div id="projectDesc" style="margin-bottom:1rem;"></div>
+
+        <div class="workspace-buttons">
+          <a id="liveBtn" href="#" target="_blank">🔗 Live Demo</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <section id="design" class="bg-muted"><div class="container"><div style="text-align:center;"><p class="mono-badge">creative portfolio</p><h2>Design Gallery</h2></div><div class="design-gallery"><div class="design-card"><div class="design-icon"><i class="fab fa-figma"></i></div><h3>Food App UI Design</h3><p>Modern food delivery app interface with vibrant cards.</p><a href="https://www.figma.com/design/m5AooxSIopvISkE0QnEyMa/Untitled?node-id=2-2" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card"><div class="design-icon"><i class="fab fa-figma"></i></div><h3>Complete UI/UX Design</h3><p>Complete design system, style guide, responsive layouts.</p><a href="https://www.figma.com/design/hY2nLUCO9ulrlJZX4ed9Q4/Complete-UI-UX-design--Community-?node-id=15-185" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card"><div class="design-icon"><i class="fab fa-figma"></i></div><h3>Mobile App UI Kit</h3><p>Elegant mobile app design with modern typography.</p><a href="https://www.figma.com/design/xfhcCkRwHKiAgUnYhGgXMw/Untitled?node-id=0-1" target="_blank" class="design-btn">Click Here →</a></div><div class="design-card"><div class="design-icon"><i class="fab fa-canva"></i></div><h3>Canva Design Studio</h3><p>Professional site, invitation, social media posts, branding.</p><a href="https://www.canva.com/design/DAHHX072rt0/eUKMD2wls6kvmYhZmvlwog/edit" target="_blank" class="design-btn">Click Here →</a></div></div></div></section>
 
@@ -538,21 +1166,34 @@ $ git status
 
     <section id="certificates"><div class="container"><div style="text-align:center;"><p class="mono-badge">certifications & honors</p><h2>Continuous Learning</h2></div><div class="cert-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem;"><div class="cert-card-detailed"><div class="cert-title">Ethical Hacker Course</div><p>Ganpat University · System security, network protection, penetration testing.</p></div><div class="cert-card-detailed"><div class="cert-title">IEEE Women In Engineering</div><p>Student Member · 2024 Technical workshops, leadership programs.</p></div><div class="cert-card-detailed"><div class="cert-title">Cyber Security & Hacking</div><p>Mentors - 2023 Vulnerability analysis, cyber attack methods.</p></div><div class="cert-card-detailed"><div class="cert-title">PHP Training</div><p>Brainy Beam - 2022 Dynamic web development, CRUD operations.</p></div><div class="cert-card-detailed"><div class="cert-title">Full Stack Development</div><p>Special Char - 2023 Frontend + backend integration, real project.</p></div></div></div></div></section>
 
-    <section id="education" class="bg-muted"><div class="container"><div style="text-align:center;"><p class="mono-badge">academic journey</p><h2>Education</h2></div><div class="timeline-edu"><div class="timeline-item left"><div class="edu-card-modern"><span>2023 - 2026 (Expected)</span><h3>B.Tech in Information Technology</h3><div>U.V. Patel College of Engineering, Ganpat University</div></div></div><div class="timeline-item right"><div class="edu-card-modern"><span>2020 - 2023</span><h3>Diploma in Information Technology</h3><div>BSPP College of Engineering, Ganpat University</div></div></div><div class="timeline-item left"><div class="edu-card-modern"><span>2019 - 2020</span><h3>Secondary School Certificate (SSC)</h3><div>Shrimati S.G. Shukla Kanya Vidyalaya, Gujarat</div></div></div></div></div></section>
+    <section id="education" class="bg-muted"><div class="container"><div style="text-align:center;"><p class="mono-badge">academic journey</p><h2>Education</h2></div><div class="timeline-edu"><div class="timeline-item left"><div class="edu-card-modern"><span>2023 - 2026 (Completed)</span><h3>B.Tech in Information Technology</h3><div>U.V. Patel College of Engineering, Ganpat University</div></div></div><div class="timeline-item right"><div class="edu-card-modern"><span>2020 - 2023</span><h3>Diploma in Information Technology</h3><div>BSPP College of Engineering, Ganpat University</div></div></div><div class="timeline-item left"><div class="edu-card-modern"><span>2019 - 2020</span><h3>Secondary School Certificate (SSC)</h3><div>Shrimati S.G. Shukla Kanya Vidyalaya, Gujarat</div></div></div></div></div></section>
 
     <!-- CONTACT SECTION - Get in Touch & Hire Me beautifully styled -->
     <section id="contact"><div class="container"><div style="text-align:center;" data-aos="fade-up"><p class="mono-badge">get in touch</p><h2 style="font-size:2.2rem;">Hire Me</h2></div><div class="contact-grid"><div class="contact-section-premium" data-aos="fade-right"><h3 style="font-size:1.6rem; font-weight:700; margin-bottom:1rem; color:#1e3a5f;">📞 Direct Reach</h3><div class="contact-icon-card"><i class="fas fa-phone-alt"></i><a href="tel:+919428226172">+91 9428226172</a></div><div class="contact-icon-card"><i class="fas fa-envelope"></i><a href="mailto:zeelprajapati620@gmail.com">zeelprajapati620@gmail.com</a></div><div class="contact-icon-card"><i class="fas fa-map-marker-alt"></i><span>Gujarat, India</span></div></div><div class="contact-section-premium contact-form-premium" data-aos="fade-left"><h3 style="font-size:1.6rem; font-weight:700; margin-bottom:1rem; color:#1e3a5f;">✉️ Send a Message</h3><form id="contact-form"><input type="text" name="name" placeholder="Full name" class="form-input" required><input type="email" name="email" placeholder="Email address" class="form-input" required><input type="text" name="subject" placeholder="Subject" class="form-input"><textarea name="message" rows="3" placeholder="Tell me about your opportunity..." class="form-input" required></textarea><button type="submit" class="btn-primary" style="width:100%;">Send Message →</button><div id="form-message" style="margin-top:0.8rem;"></div></form></div></div></div></section>
     <footer><p>© 2026 Zeel Prajapati — Available for hire • Full‑Stack Engineer & AI Developer</p></footer>
 </main>
 
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+    
     AOS.init({ duration: 800, once: true, mirror: false, offset: 70 });
-    const mobBtn = document.getElementById('mobileMenuBtn');
-    const navDiv = document.querySelector('.nav-links');
-    if(mobBtn) mobBtn.addEventListener('click', () => { if(navDiv.style.display === 'flex') navDiv.style.display = 'none'; else { navDiv.style.display = 'flex'; navDiv.style.flexDirection = 'column'; navDiv.style.background = 'white'; navDiv.style.padding = '1rem'; navDiv.style.borderRadius = '1rem'; navDiv.style.position = 'absolute'; navDiv.style.top = '70px'; navDiv.style.left = '1rem'; navDiv.style.right = '1rem'; navDiv.style.gap = '0.8rem'; } });
-    window.addEventListener('resize', () => { if(window.innerWidth > 768) { navDiv.style.display = ''; navDiv.style.flexDirection = ''; navDiv.style.background = ''; navDiv.style.padding = ''; navDiv.style.borderRadius = ''; navDiv.style.position = ''; } else { if(navDiv.style.display !== 'flex') navDiv.style.display = 'none'; } });
-    document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); if(window.innerWidth <= 768) navDiv.style.display = 'none'; }); });
+   const mobBtn = document.getElementById('mobileMenuBtn');
+const navDiv = document.getElementById('navLinks');
+
+mobBtn.addEventListener('click', () => {
+    navDiv.classList.toggle('show');
+});
+   document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const target = document.querySelector(link.getAttribute('href'));
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        navDiv.classList.remove('show'); // mobile close
+    });
+});
     const form = document.getElementById('contact-form'); const msgDiv = document.getElementById('form-message');
     form?.addEventListener('submit', (e) => { e.preventDefault(); msgDiv.innerHTML = '<div class="toast-success">✅ Message sent! Zeel will reach you soon.</div>'; form.reset(); setTimeout(() => msgDiv.innerHTML = '', 3000); });
     const modal = document.getElementById('resumeModal'); const verifyBtn = document.getElementById('verifyResumeBtn'); const passInput = document.getElementById('resumePass'); const errorSpan = document.getElementById('accessError');
@@ -563,161 +1204,78 @@ $ git status
     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); }); }, { threshold: 0.2 });
     timelineItems.forEach(i => observer.observe(i));
 function openProject(type, el) {
-    const projects = {
-
-        dream: {
-            title: "🏡 Dream Home Designer",
-            desc: `
-            <strong><i class="fas fa-building"></i> Project Overview</strong><br>
-            A premium real-estate platform crafted for users to discover apartments, villas, and luxury dream homes with an elegant digital experience.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Premium property listing showcase<br>
-            • Advanced search & smart filtering<br>
-            • Inquiry / contact request system<br>
-            • Mobile responsive modern layout<br>
-            • Smooth transitions & animations<br>
-            • Elegant UI for buyers & sellers<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            HTML5 • CSS3 • JavaScript • PHP • Responsive Design
-            `,
-            link: "https://my-dream-home-sage.vercel.app"
-        },
-
-        trip: {
-            title: "✈️ Yaatra Smart Travel Planner",
-            desc: `
-            <strong><i class="fas fa-globe"></i> Project Overview</strong><br>
-            A modern travel planning web app where users can discover destinations, create itineraries, and manage complete journeys with ease.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Destination explorer interface<br>
-            • Smart itinerary planning system<br>
-            • Responsive travel dashboard<br>
-            • Clean booking-inspired UI<br>
-            • User-friendly navigation flow<br>
-            • Modern travel brand experience<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            MERN Stack • MongoDB Compass • Express.js • React.js • Node.js
-            `,
-            link: "https://yaatra-website.vercel.app"
-        },
-
-        ai: {
-            title: "⚡ TechnoFix AI Service Platform",
-            desc: `
-            <strong><i class="fas fa-robot"></i> Project Overview</strong><br>
-            AI-powered electric service platform for booking repair services, solving technical issues, and chatting with an intelligent support assistant.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • AI chatbot support assistant<br>
-            • Smart troubleshooting system<br>
-            • Service booking dashboard<br>
-            • Instant customer support UI<br>
-            • Business automation experience<br>
-            • Modern responsive layout<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            Python • Flask • HTML • CSS • JavaScript • Gemini AI
-            `,
-            link: "https://ai-electric-service.vercel.app"
-        },
-
-        prompt: {
-            title: "🧠 PromptStudio AI",
-            desc: `
-            <strong><i class="fas fa-lightbulb"></i> Project Overview</strong><br>
-            A productivity platform for creating, saving, organizing, and reusing prompts for AI tools in one modern workspace.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Prompt creation workspace<br>
-            • Save & manage prompts<br>
-            • Organized dashboard UI<br>
-            • Fast responsive performance<br>
-            • Productivity-focused design<br>
-            • Minimal clean interface<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            React.js • JavaScript • CSS3
-            `,
-            link: "https://promptstudio-ai.vercel.app"
-        },
-
-        foodie: {
-            title: "🍔 Foodie Premium UI",
-            desc: `
-            <strong><i class="fas fa-utensils"></i> Project Overview</strong><br>
-            A stylish restaurant and food ordering interface designed with modern visuals, premium cards, and smooth user experience.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Food menu showcase cards<br>
-            • Restaurant listing sections<br>
-            • Premium modern UI design<br>
-            • Attractive visual branding<br>
-            • Mobile responsive layout<br>
-            • Smooth browsing experience<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            Wix Studio • UI/UX Design • Custom Styling
-            `,
-            link: "https://zeelprajapati20.wixsite.com/foodie"
-        },
-
-        vastraa: {
-            title: "🛍️ Vastraa Fashion Store",
-            desc: `
-            <strong><i class="fas fa-shirt"></i> Project Overview</strong><br>
-            A premium e-commerce fashion platform for clothing collections with a modern shopping experience and stylish storefront UI.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Product catalog system<br>
-            • Add to cart functionality<br>
-            • Category browsing filters<br>
-            • Stylish fashion homepage<br>
-            • Premium shopping experience<br>
-            • Fully responsive store design<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            HTML • CSS • JavaScript • React.js
-            `,
-            link: "https://vastraa-eosin.vercel.app"
-        },
-
-        spotify: {
-            title: "🎵 Spotify Clone",
-            desc: `
-            <strong><i class="fas fa-music"></i> Project Overview</strong><br>
-            A modern Spotify-inspired music streaming interface featuring playlists, albums, and player controls with clean UI design.<br><br>
-
-            <strong><i class="fas fa-star"></i> Key Features</strong><br>
-            • Playlist management UI<br>
-            • Audio player controls<br>
-            • Album & artist cards<br>
-            • Smooth responsive design<br>
-            • Music discovery sections<br>
-            • Premium streaming interface<br><br>
-
-            <strong><i class="fas fa-code"></i> Technology Stack</strong><br>
-            HTML • CSS • JavaScript • React.js
-            `,
-            link: "#"
-        }
-
-    };
-
     const p = projects[type];
 
     if (p) {
-        document.getElementById('projectTitle').innerHTML = p.title;
-        document.getElementById('projectDesc').innerHTML = p.desc;
-        document.getElementById('liveBtn').href = p.link;
+        document.getElementById("projectTitle").innerHTML = p.title;
+        document.getElementById("projectDesc").innerHTML = p.desc;
+        document.getElementById("liveBtn").href = p.link;
     }
 
-    document.querySelectorAll('.file').forEach(f => f.classList.remove('active'));
-    if (el) el.classList.add('active');
+    document.querySelectorAll(".file").forEach(f => f.classList.remove("active"));
+    if (el) el.classList.add("active");
 }
+    const projects = {
+
+dream: {
+title: "🏡 Dream Home Designer",
+desc: "<strong><i class='fas fa-building'></i> Project Overview</strong><br>A premium real-estate platform designed for users to explore apartments, villas, and luxury homes with a modern and elegant digital experience.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Advanced property listing system<br>• Smart search & filtering options<br>• Inquiry / contact form integration<br>• Smooth animations & transitions<br>• Fully responsive modern UI<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>HTML5 • CSS3 • JavaScript • PHP • Responsive Design",
+link: "https://my-dream-home-sage.vercel.app"
+},
+
+trip: {
+title: "✈️ Yaatra Travel Planner",
+desc: "<strong><i class='fas fa-globe'></i> Project Overview</strong><br>A smart travel planning web application that helps users explore destinations, plan trips, and manage itineraries with ease.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Destination discovery interface<br>• Smart itinerary planner<br>• Travel dashboard UI<br>• Clean booking-style design<br>• User-friendly navigation<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>MERN Stack • MongoDB • Express.js • React.js • Node.js",
+link: "https://yaatra-website.vercel.app"
+},
+
+ai: {
+title: "⚡ TechnoFix AI Service Platform",
+desc: "<strong><i class='fas fa-robot'></i> Project Overview</strong><br>An AI-powered service platform designed for booking technical repairs, troubleshooting issues, and providing intelligent chatbot assistance.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• AI chatbot support system<br>• Smart troubleshooting guidance<br>• Service booking interface<br>• Instant customer assistance UI<br>• Business automation features<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>Python • Flask • HTML • CSS • JavaScript • Gemini AI",
+link: "https://technofix-ai.vercel.app"
+},
+
+prompt: {
+title: "🧠 PromptStudio AI",
+desc: "<strong><i class='fas fa-lightbulb'></i> Project Overview</strong><br>A productivity platform that allows users to create, organize, and manage AI prompts efficiently in one workspace.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Prompt creation & editing workspace<br>• Save and organize prompts<br>• Dashboard UI for quick access<br>• Fast and responsive interface<br>• Minimal and clean design<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>React.js • JavaScript • CSS3",
+link: "https://promptstudio-ai.vercel.app"
+},
+
+foodie: {
+title: "🍔 Foodie UI Design",
+desc: "<strong><i class='fas fa-utensils'></i> Project Overview</strong><br>A modern and visually appealing food ordering UI design focused on user experience and clean interface layouts.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Attractive food menu cards<br>• Restaurant listing sections<br>• Clean modern UI design<br>• Smooth browsing experience<br>• Mobile responsive layout<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>Figma • UI/UX Design • Prototyping",
+link: "https://www.figma.com/design/m5AooxSIopvISkE0QnEyMa/Untitled?node-id=2-2"
+},
+
+vastraa: {
+title: "🛍️ Vastraa E-commerce UI",
+desc: "<strong><i class='fas fa-shopping-cart'></i> Project Overview</strong><br>A stylish and modern e-commerce UI design created for showcasing fashion products with an elegant shopping experience.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Product catalog interface<br>• Category-based browsing<br>• Modern fashion UI layout<br>• Clean product cards design<br>• Responsive storefront design<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>Figma • UI/UX Design • Wireframing",
+link: "https://www.figma.com/design/hY2nLUCO9ulrlJZX4ed9Q4/Complete-UI-UX-design--Community-?node-id=15-185"
+},
+
+spotify: {
+title: "🎵 Spotify Clone",
+desc: "<strong><i class='fas fa-music'></i> Project Overview</strong><br>A Spotify-inspired music streaming interface featuring playlists, albums, and audio controls with a clean modern UI.<br><br><strong><i class='fas fa-star'></i> Key Features</strong><br>• Playlist management UI<br>• Audio player controls<br>• Album & artist sections<br>• Smooth responsive design<br>• Music discovery interface<br><br><strong><i class='fas fa-code'></i> Technology Stack</strong><br>HTML • CSS • JavaScript • React.js",
+link: "https://spotify-clone-lyart.vercel.app"
+}
+
+};
+function openProject(type, el) {
+    const p = projects[type];
+
+    if (p) {
+        document.getElementById("projectTitle").innerHTML = p.title;
+        document.getElementById("projectDesc").innerHTML = p.desc;
+        document.getElementById("liveBtn").href = p.link;
+    }
+
+    document.querySelectorAll(".file").forEach(f => f.classList.remove("active"));
+    if (el) el.classList.add("active");
+}
+
+// Default load
+openProject('dream');
+
 </script>
 </body>
 </html>
